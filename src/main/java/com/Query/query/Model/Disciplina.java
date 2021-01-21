@@ -22,11 +22,7 @@ import lombok.Data;
 @AllArgsConstructor
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Disciplina implements Serializable {
-
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Integer idDisciplina;

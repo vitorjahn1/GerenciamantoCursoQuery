@@ -14,18 +14,17 @@ import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper=false)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Aluno extends Pessoa implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Integer matricula;
 	@NotNull

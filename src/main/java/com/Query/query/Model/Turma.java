@@ -3,31 +3,25 @@ package com.Query.query.Model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @NoArgsConstructor
 @Data
-public class Turma implements Serializable{
-	/**
-	 * 
-	 */
+public class Turma implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Integer idTurma;
@@ -35,18 +29,11 @@ public class Turma implements Serializable{
 	private String descricao;
 	private Integer numeroVagas;
 	private Integer periodoLetivo;
-	@OneToMany(mappedBy = "turmas",orphanRemoval = true , cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "turmas", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	@JsonManagedReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Disciplina> disciplinas = new HashSet<Disciplina>();
-	@ManyToMany(cascade = CascadeType.ALL,mappedBy = "turma")
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "turma")
 	@JsonIgnore
 	private Set<Aluno> alunos = new HashSet<Aluno>();
-
-
-
-		
-		
-
-	
 }

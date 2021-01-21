@@ -1,7 +1,5 @@
 package com.Query.query.Controller;
 
-import static org.junit.Assert.*;
-
 import java.net.URI;
 
 import org.junit.jupiter.api.Test;
