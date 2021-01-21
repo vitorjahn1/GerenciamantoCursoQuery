@@ -33,10 +33,8 @@ public class AlunoReceiver {
 			aluno.setNome(atualizaAluno.getNome());
 			aluno.setTurma(atualizaAluno.getTurma());
 
-		} else {
-
 		}
-
+		
 		alunoRepository.save(aluno);
 
 	}
