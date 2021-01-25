@@ -2,18 +2,23 @@ package com.query.query.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.query.query.exception.ProfessorException;
 import com.query.query.model.Professor;
 import com.query.query.repository.ProfessorRepository;
 
+import lombok.AllArgsConstructor;
+
 
 @Service
+@AllArgsConstructor
+@Transactional
 public class ProfessorService {
-	@Autowired
-	private ProfessorRepository professorRepository;
+	
+	private final ProfessorRepository professorRepository;
 
 	public Professor retornaProfessor(Integer idProfessor) {
 
@@ -25,10 +30,8 @@ public class ProfessorService {
 		return professorRetorno;
 	}
 
-	public List<Professor> retornaProfessor() {
+	public List<Professor> retornaProfessores() {
 
-		List<Professor> professorRetorno = professorRepository.findAll();
-
-		return professorRetorno;
+		return professorRepository.findAll();
 	}
 }

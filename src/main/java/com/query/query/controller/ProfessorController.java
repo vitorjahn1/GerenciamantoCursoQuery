@@ -2,7 +2,6 @@ package com.query.query.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.query.query.model.Professor;
 import com.query.query.service.ProfessorService;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping(path = ProfessorController.PATH)
+@AllArgsConstructor
 public class ProfessorController {
 
-	@Autowired
-	private ProfessorService professorService;
+	
+	private final ProfessorService professorService;
 
 	public static final String PATH = "/professor";
 
@@ -30,7 +32,7 @@ public class ProfessorController {
 
 	@GetMapping
 	public ResponseEntity<List<Professor>> retornaProfessor() {
-		List<Professor> professores = professorService.retornaProfessor();
+		List<Professor> professores = professorService.retornaProfessores();
 
 		return ResponseEntity.ok(professores);
 

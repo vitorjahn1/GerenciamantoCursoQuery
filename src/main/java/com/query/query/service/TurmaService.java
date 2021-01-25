@@ -2,18 +2,23 @@ package com.query.query.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.query.query.exception.TurmaException;
 import com.query.query.model.Turma;
 import com.query.query.repository.TurmaRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
+@Transactional
 public class TurmaService {
 	
-	@Autowired
-	private TurmaRepository turmaRepository;
+	
+	private final TurmaRepository turmaRepository;
 
 	public Turma retornaTurma(Integer idTurma) {
 
@@ -28,10 +33,8 @@ public class TurmaService {
 	}
 
 	public List<Turma> retornaTurma() {
-
-		List<Turma> alunoRetorno = turmaRepository.findAll();
-
-		return alunoRetorno;
+		
+		return turmaRepository.findAll();
 	}
 
 }

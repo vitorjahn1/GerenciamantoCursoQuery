@@ -2,7 +2,6 @@ package com.query.query.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.query.query.model.Disciplina;
 import com.query.query.service.DisciplinaService;
 
+import lombok.AllArgsConstructor;
+
 @CrossOrigin
 @RestController
 @RequestMapping(path = DisciplinaController.PATH)
+@AllArgsConstructor
 public class DisciplinaController {
-	@Autowired
-	private DisciplinaService disciplinaService;
+	
+	private final DisciplinaService disciplinaService;
 
 	public static final String PATH = "/disciplina";
 
@@ -35,7 +37,7 @@ public class DisciplinaController {
 	@GetMapping
 	public ResponseEntity<List<Disciplina>> retornaDisciplina() {
 
-		List<Disciplina>disciplinas = disciplinaService.retornaDisciplina();
+		List<Disciplina>disciplinas = disciplinaService.retornaDisciplinas();
 
 		return ResponseEntity.ok(disciplinas);
 	}

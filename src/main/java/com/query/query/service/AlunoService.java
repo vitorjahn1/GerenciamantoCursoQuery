@@ -2,17 +2,22 @@ package com.query.query.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.query.query.exception.AlunoException;
 import com.query.query.model.Aluno;
 import com.query.query.repository.AlunoRepository;
+
+import lombok.AllArgsConstructor;
 @Service
+@Transactional
+@AllArgsConstructor
 public class AlunoService {
 
-	@Autowired
-	private AlunoRepository alunoRepository;
+	
+	private final AlunoRepository alunoRepository;
 
 	public Aluno retornaAluno(Integer matricula) {
 
@@ -25,11 +30,10 @@ public class AlunoService {
 		return alunoRetorno;
 	}
 
-	public List<Aluno> retornaAluno() {
+	public List<Aluno> retornaAlunos() {
 
-		List<Aluno> alunoRetorno = alunoRepository.findAll();
 
-		return alunoRetorno;
+		return alunoRepository.findAll();
 	}
 
 }
