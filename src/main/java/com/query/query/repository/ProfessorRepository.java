@@ -8,7 +8,7 @@ import com.query.query.model.Professor;
 
 public interface ProfessorRepository extends JpaRepository<Professor, Integer>{
 
-	Professor getOne(Integer id);
+	Professor findByIdProfessor(Integer id);
 
 
 }

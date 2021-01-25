@@ -22,10 +22,10 @@ public class ProfessorController {
 	public static final String PATH = "/professor";
 
 	@GetMapping("/{id}")
-	public Professor retornaProfessor(@PathVariable(name = "id") Integer id) {
+	public  ResponseEntity<Professor> retornaProfessor(@PathVariable(name = "id") Integer id) {
 		Professor professor = professorService.retornaProfessor(id);
 
-		return professor;
+		return ResponseEntity.ok(professor);
 	}
 
 	@GetMapping

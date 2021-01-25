@@ -17,7 +17,7 @@ import com.query.query.service.AlunoService;
 public class AlunoController {
 
 	@Autowired
-	private AlunoService alunoService;
+	private  AlunoService alunoService;
 
 	public static final String PATH = "/aluno";
 
@@ -26,10 +26,6 @@ public class AlunoController {
 		
 		Aluno aluno = alunoService.retornaAluno(matricula);
 		
-		if(aluno== null) {
-			
-			return ResponseEntity.notFound().build();
-		}
 		
 		return ResponseEntity.ok(aluno);
 	}

@@ -8,4 +8,6 @@ import com.query.query.model.Disciplina;
 
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Integer> {
 
+	
+	Disciplina findByIdDisciplina(Integer idDisciplina);
 }

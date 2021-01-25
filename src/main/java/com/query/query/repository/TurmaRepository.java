@@ -8,4 +8,6 @@ import com.query.query.model.Turma;
 
 public interface TurmaRepository extends JpaRepository<Turma, Integer>{
 
+	Turma findByIdTurma(Integer idTurma);
+
 }
