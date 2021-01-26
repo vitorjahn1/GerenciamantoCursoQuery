@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.query.query.model.Turma;
+import com.query.query.dto.TurmaDto;
 import com.query.query.service.TurmaService;
 
 import lombok.AllArgsConstructor;
@@ -26,9 +26,9 @@ public class TurmaController {
 	public static final String PATH = "/turma";
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Turma> retornaTurma(@PathVariable Integer id) {
+	public ResponseEntity<TurmaDto> retornaTurma(@PathVariable Integer id) {
 
-		Turma turma = turmaService.retornaTurma(id);
+		TurmaDto turma = turmaService.retornaTurma(id);
 
 		return ResponseEntity.ok(turma);
 	}
@@ -36,9 +36,9 @@ public class TurmaController {
 	
 	
 	@GetMapping
-	public  ResponseEntity<List<Turma>> retornaTurma() {
+	public  ResponseEntity<List<TurmaDto>> retornaTurma() {
 
-		List<Turma> turmas = turmaService.retornaTurma();
+		List<TurmaDto> turmas = turmaService.retornaTurma();
 
 		return ResponseEntity.ok(turmas);
 	}

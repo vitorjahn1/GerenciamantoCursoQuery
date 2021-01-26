@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.query.query.model.Professor;
+import com.query.query.dto.ProfessorDto;
 import com.query.query.service.ProfessorService;
 
 import lombok.AllArgsConstructor;
@@ -24,15 +24,15 @@ public class ProfessorController {
 	public static final String PATH = "/professor";
 
 	@GetMapping("/{id}")
-	public  ResponseEntity<Professor> retornaProfessor(@PathVariable(name = "id") Integer id) {
-		Professor professor = professorService.retornaProfessor(id);
+	public  ResponseEntity<ProfessorDto> retornaProfessor(@PathVariable(name = "id") Integer id) {
+		ProfessorDto professor = professorService.retornaProfessor(id);
 
 		return ResponseEntity.ok(professor);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Professor>> retornaProfessor() {
-		List<Professor> professores = professorService.retornaProfessores();
+	public ResponseEntity<List<ProfessorDto>> retornaProfessor() {
+		List<ProfessorDto> professores = professorService.retornaProfessores();
 
 		return ResponseEntity.ok(professores);
 

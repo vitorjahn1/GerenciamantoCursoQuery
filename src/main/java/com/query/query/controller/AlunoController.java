@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.query.query.model.Aluno;
+import com.query.query.dto.AlunoDto;
 import com.query.query.service.AlunoService;
 
 import lombok.AllArgsConstructor;
@@ -24,17 +24,17 @@ public class AlunoController {
 	public static final String PATH = "/aluno";
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Aluno> retornaAluno(@PathVariable(name = "id") Integer matricula) {
+	public ResponseEntity<AlunoDto> retornaAluno(@PathVariable(name = "id") Integer matricula) {
 		
-		Aluno aluno = alunoService.retornaAluno(matricula);
+		AlunoDto aluno = alunoService.retornaAluno(matricula);
 		
 		
 		return ResponseEntity.ok(aluno);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Aluno>> retornaAluno() {
-		List<Aluno> alunos = alunoService.retornaAlunos();
+	public ResponseEntity<List<AlunoDto>> retornaAluno() {
+		List<AlunoDto> alunos = alunoService.retornaAlunos();
 		
 		return ResponseEntity.ok(alunos);
 
