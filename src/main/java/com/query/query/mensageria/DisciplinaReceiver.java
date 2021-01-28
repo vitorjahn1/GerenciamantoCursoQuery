@@ -17,8 +17,6 @@ public class DisciplinaReceiver {
 	@RabbitListener(queues = "disciplinaCriar")
 	public void inserirTurma(DisciplinaDto disciplinaDto) {
 		
-		
-		
 		disciplinaRepository.save(criarDisciplinaModel(disciplinaDto));
 
 	}
@@ -55,5 +53,4 @@ public class DisciplinaReceiver {
 		disciplinaModel.setTurmas(disciplinaDto.getTurmas());
 		return disciplinaModel;
 	}
-
 }

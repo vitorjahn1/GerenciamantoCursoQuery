@@ -31,7 +31,7 @@ public class ProfessorController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<ProfessorDto>> retornaProfessor() {
+	public ResponseEntity<List<ProfessorDto>> retornaProfessores() {
 		List<ProfessorDto> professores = professorService.retornaProfessores();
 
 		return ResponseEntity.ok(professores);

@@ -34,7 +34,7 @@ public class ProfessorService {
 
 	public List<ProfessorDto> retornaProfessores() {
 		
-		List<ProfessorDto>professoresDto = new ArrayList<ProfessorDto>();
+		List<ProfessorDto>professoresDto = new ArrayList<>();
 		
 		for(Professor professor : professorRepository.findAll()) {
 			if(professor == null) {

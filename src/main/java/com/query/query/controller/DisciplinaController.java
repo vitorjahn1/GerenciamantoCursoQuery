@@ -33,7 +33,7 @@ public class DisciplinaController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<DisciplinaDto>> retornaDisciplina() {
+	public ResponseEntity<List<DisciplinaDto>> retornaDisciplinas() {
 
 		List<DisciplinaDto>disciplinas = disciplinaService.retornaDisciplinas();
 

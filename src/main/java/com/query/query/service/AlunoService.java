@@ -37,7 +37,7 @@ public class AlunoService {
 	public List<AlunoDto> retornaAlunos() {
 		
 		List<Aluno> alunos = alunoRepository.findAll();
-		List<AlunoDto> alunosDtos = new ArrayList<AlunoDto>();
+		List<AlunoDto> alunosDtos = new ArrayList<>();
 		for(Aluno aluno : alunos) {
 			
 			alunosDtos.add(criarAlunoDto(aluno));

@@ -36,7 +36,7 @@ public class TurmaController {
 	
 	
 	@GetMapping
-	public  ResponseEntity<List<TurmaDto>> retornaTurma() {
+	public  ResponseEntity<List<TurmaDto>> retornaTurmas() {
 
 		List<TurmaDto> turmas = turmaService.retornaTurma();
 

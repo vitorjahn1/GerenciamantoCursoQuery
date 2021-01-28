@@ -36,7 +36,7 @@ public class TurmaService {
 
 	public List<TurmaDto> retornaTurma() {
 		
-		List<TurmaDto>turmasDto = new ArrayList<TurmaDto>();
+		List<TurmaDto>turmasDto = new ArrayList<>();
 		
 		for(Turma turma : turmaRepository.findAll()) {
 			

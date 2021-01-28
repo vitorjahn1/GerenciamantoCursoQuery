@@ -33,7 +33,7 @@ public class AlunoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<AlunoDto>> retornaAluno() {
+	public ResponseEntity<List<AlunoDto>> retornaAlunos() {
 		List<AlunoDto> alunos = alunoService.retornaAlunos();
 		
 		return ResponseEntity.ok(alunos);
