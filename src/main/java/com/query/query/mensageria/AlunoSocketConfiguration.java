@@ -4,7 +4,6 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-
 @Configuration
 public class AlunoSocketConfiguration implements WebSocketMessageBrokerConfigurer{
 	   public static final String BROKER = "machinesCreated";

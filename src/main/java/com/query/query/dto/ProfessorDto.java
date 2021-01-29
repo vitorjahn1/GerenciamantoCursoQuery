@@ -1,14 +1,11 @@
 package com.query.query.dto;
 
-
-
-
-
 import com.query.query.model.Disciplina;
 import com.query.query.model.Pessoa;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 @EqualsAndHashCode(callSuper=false)
 @Data
 public class ProfessorDto extends Pessoa {

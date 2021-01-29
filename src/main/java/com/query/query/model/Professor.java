@@ -25,11 +25,4 @@ public class Professor extends Pessoa implements Serializable{
 	@ManyToOne
 	@JsonBackReference
 	private Disciplina disciplina;
-
-	
-	
-	
-	
-	
-
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.query.query.dto.TurmaDto;
+import com.query.query.exception.TurmaException;
 import com.query.query.model.Turma;
 import com.query.query.repository.TurmaRepository;
 
@@ -33,6 +34,9 @@ public class TurmaReceiver {
 		turmaModel.setNumeroVagas(turmaDto.getNumeroVagas());
 		turmaModel.setPeriodoLetivo(turmaDto.getPeriodoLetivo());
 		turmaRepository.save(turmaModel);
+		}else {
+			
+			throw new TurmaException("Turma não encontrada");
 		}
 	}
 
@@ -43,9 +47,11 @@ public class TurmaReceiver {
 		if(turmaModel != null) {
 			
 			turmaRepository.delete(turmaModel);
+		}else {
+			
+			throw new TurmaException("Turma não encontrada");
 		}
 		
-
 	}
 	
 	public Turma criarTurmaModel(TurmaDto turmaDto) {

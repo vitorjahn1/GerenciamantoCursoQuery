@@ -1,6 +1,5 @@
 package com.query.query.dto;
 
-
 import java.util.HashSet;
 import java.util.Set;
 

@@ -19,7 +19,6 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path = TurmaController.PATH)
 @AllArgsConstructor
 public class TurmaController {
-
 	
 	private final TurmaService turmaService;
 
@@ -32,8 +31,6 @@ public class TurmaController {
 
 		return ResponseEntity.ok(turma);
 	}
-	
-	
 	
 	@GetMapping
 	public  ResponseEntity<List<TurmaDto>> retornaTurmas() {

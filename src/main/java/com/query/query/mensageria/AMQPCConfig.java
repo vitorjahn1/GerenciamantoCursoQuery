@@ -4,16 +4,8 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 
 @Configuration
 public class AMQPCConfig {
@@ -25,7 +17,7 @@ public class AMQPCConfig {
 
 	public static final String QUEUE_TURMA_ATUALIZAR = "turmaAtualizar";
 	public static final String QUEUE_TURMA_CRIAR = "turmaCriar";
-	public static final String QUEUE_TURMA_DELETAR = "turmaCriar";
+	public static final String QUEUE_TURMA_DELETAR = "turmaDeletar";
 	
 	public static final String QUEUE_PROFESSOR_ATUALIZAR = "professorAtualizar";
 	public static final String QUEUE_PROFESSOR_CRIAR = "professorCriar";
@@ -34,7 +26,6 @@ public class AMQPCConfig {
 	public static final String QUEUE_DISCIPLINA_ATUALIZAR = "disciplinaAtualizar";
 	public static final String QUEUE_DISCIPLINA_CRIAR = "disciplinaCriar";
 	public static final String QUEUE_DISCIPLINA_DELETAR = "disciplinaDeletar";
-	
 	
 	public static final String ROUTING_KEY = "route";
 	public static final String ROUTING_KEY_ALUNO = "route_aluno_atualizar";
@@ -51,7 +42,6 @@ public class AMQPCConfig {
 	public static final String ROUTING_PROFESSOR_ATUALIZAR = "professor_atualizar";
 	public static final String ROUTING_PROFESSOR_CRIAR = "professor_criar";
 	public static final String ROUTING_PROFESSOR_DELETAR = "professor_deletar";
-	
 
 	@Bean
 	public DirectExchange appExchange() {
@@ -178,9 +168,5 @@ public class AMQPCConfig {
 	public Binding declareBindingAtualizarDisciplina() {
 		return BindingBuilder.bind(appQueueProfessorCriar()).to(appExchange()).with(ROUTING_DISCIPLINA_ATUALIZAR);
 	}
-
-
-
- 
 
 }

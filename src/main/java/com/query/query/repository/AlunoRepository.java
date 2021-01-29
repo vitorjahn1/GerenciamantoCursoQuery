@@ -5,9 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.query.query.model.Aluno;
 
-
-
-
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Integer>{
 	

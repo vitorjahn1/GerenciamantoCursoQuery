@@ -32,8 +32,8 @@ public class Turma implements Serializable {
 	@OneToMany(mappedBy = "turmas", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	@JsonManagedReference
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Set<Disciplina> disciplinas = new HashSet<Disciplina>();
+	private Set<Disciplina> disciplinas = new HashSet<>();
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "turma")
 	@JsonIgnore
-	private Set<Aluno> alunos = new HashSet<Aluno>();
+	private Set<Aluno> alunos = new HashSet<>();
 }

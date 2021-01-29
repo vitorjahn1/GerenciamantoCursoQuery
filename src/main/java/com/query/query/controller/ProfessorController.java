@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path = ProfessorController.PATH)
 @AllArgsConstructor
 public class ProfessorController {
-
 	
 	private final ProfessorService professorService;
 

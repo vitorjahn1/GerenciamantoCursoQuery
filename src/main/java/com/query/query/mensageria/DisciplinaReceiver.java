@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.query.query.dto.DisciplinaDto;
+import com.query.query.exception.DisciplinaException;
 import com.query.query.model.Disciplina;
 import com.query.query.repository.DisciplinaRepository;
 
@@ -15,23 +16,28 @@ public class DisciplinaReceiver {
 	public DisciplinaRepository disciplinaRepository;
 
 	@RabbitListener(queues = "disciplinaCriar")
-	public void inserirTurma(DisciplinaDto disciplinaDto) {
+	public void inserirDisciplina(DisciplinaDto disciplinaDto) {
 		
 		disciplinaRepository.save(criarDisciplinaModel(disciplinaDto));
 
 	}
 
 	@RabbitListener(queues = "disciplinaAtualizar")
-	public void atualizarTurma(DisciplinaDto disciplina) {
+	public void atualizarDisciplina(DisciplinaDto disciplina) {
 
 		Disciplina disciplinaAtualiza = disciplinaRepository.getOne(disciplina.getIdDisciplina());
-		disciplinaAtualiza.setProfessores(disciplina.getProfessores());
-		disciplinaAtualiza.setDescricao(disciplina.getDescricao());
-		disciplinaAtualiza.setCargaHoraria(disciplina.getCargaHoraria());
-		disciplinaAtualiza.setSigla(disciplina.getSigla());
-		disciplinaAtualiza.setTurmas(disciplina.getTurmas());
+		if(disciplinaAtualiza != null) {
+			disciplinaAtualiza.setProfessores(disciplina.getProfessores());
+			disciplinaAtualiza.setDescricao(disciplina.getDescricao());
+			disciplinaAtualiza.setCargaHoraria(disciplina.getCargaHoraria());
+			disciplinaAtualiza.setSigla(disciplina.getSigla());
+			disciplinaAtualiza.setTurmas(disciplina.getTurmas());
 
-		disciplinaRepository.save(disciplinaAtualiza);
+			disciplinaRepository.save(disciplinaAtualiza);
+		}else {
+			
+			throw new DisciplinaException("Disciplina não encontrada");
+		}
 
 	}
 

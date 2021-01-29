@@ -36,6 +36,6 @@ public class Disciplina implements Serializable {
 	private Turma turmas;
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "disciplina")
-	private Set<Professor> professores = new HashSet<Professor>();
+	private Set<Professor> professores = new HashSet<>();
 
 }

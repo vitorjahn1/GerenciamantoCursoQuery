@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.query.query.dto.ProfessorDto;
+import com.query.query.exception.ProfessorException;
 import com.query.query.model.Professor;
 import com.query.query.repository.ProfessorRepository;
 
@@ -23,14 +24,19 @@ public class ProfessorReceiver {
 
 	@RabbitListener(queues = "professorAtualizar")
 	public void atualizarProfessor(ProfessorDto professorDto) {
-
-		Professor professorModel = new Professor();
-		professorModel.setCpf(professorDto.getCpf());
-		professorModel.setEmail(professorDto.getEmail());
-		professorModel.setNome(professorDto.getNome());
-		professorModel.setTitulacao(professorDto.getTitulacao());
-		professorRepository.save(professorModel);
-
+		
+		Professor professorModel = professorRepository.findByIdProfessor(professorDto.getIdProfessor());
+		
+		if(professorModel!= null) {
+			professorModel.setCpf(professorDto.getCpf());
+			professorModel.setEmail(professorDto.getEmail());
+			professorModel.setNome(professorDto.getNome());
+			professorModel.setTitulacao(professorDto.getTitulacao());
+			professorRepository.save(professorModel);
+		}else {
+			
+			throw new ProfessorException("Professor não encotrado");
+		}
 	}
 
 	@RabbitListener(queues = "professorDeletar")
@@ -40,6 +46,9 @@ public class ProfessorReceiver {
 
 		if (professorModel != null) {
 			professorRepository.delete(professorModel);
+		}else {
+			
+			throw new ProfessorException("Professor não encotrado");
 		}
 
 	}

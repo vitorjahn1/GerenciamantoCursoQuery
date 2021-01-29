@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path = AlunoController.PATH)
 @AllArgsConstructor
 public class AlunoController {
-
 	
 	private final AlunoService alunoService;
 
@@ -28,7 +27,6 @@ public class AlunoController {
 		
 		AlunoDto aluno = alunoService.retornaAluno(matricula);
 		
-		
 		return ResponseEntity.ok(aluno);
 	}
 
@@ -37,7 +35,6 @@ public class AlunoController {
 		List<AlunoDto> alunos = alunoService.retornaAlunos();
 		
 		return ResponseEntity.ok(alunos);
-
 	}
 
 }

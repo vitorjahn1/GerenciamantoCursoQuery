@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.query.query.dto.AlunoDto;
+import com.query.query.exception.AlunoException;
 import com.query.query.model.Aluno;
 import com.query.query.repository.AlunoRepository;
 
@@ -35,6 +36,9 @@ public class AlunoReceiver {
 			aluno.setTurma(alunoDto.getTurma());
 			
 			alunoRepository.save(aluno);
+		}else {
+			
+			throw new AlunoException("Aluno não encontrado");
 		}
 		
 
