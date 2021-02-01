@@ -30,12 +30,11 @@ public class Aluno extends Pessoa implements Serializable {
 	@NotNull
 	private String formaIngresso;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Turma> turma = new HashSet<Turma>();
+	private Set<Turma> turma = new HashSet<>();
 
-	public Aluno(Integer idPessoa, String nome, String cpf, String email, Integer matricula, String formaIngresso,
+	public Aluno(Integer idPessoa, String nome, String cpf, String email, String formaIngresso,
 			Set<Turma> turma) {
 		super(idPessoa, nome, cpf, email);
-		this.matricula = super.getIdPessoa();
 		this.formaIngresso = formaIngresso;
 		this.turma = turma;
 	}

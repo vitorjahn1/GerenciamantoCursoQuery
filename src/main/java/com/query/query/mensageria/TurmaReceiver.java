@@ -1,5 +1,7 @@
 package com.query.query.mensageria;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,34 +26,29 @@ public class TurmaReceiver {
 
 	@RabbitListener(queues = "turmaAtualizar")
 	public void atualizarTurma(TurmaDto turmaDto) {
-		
-		Turma turmaModel = turmaRepository.getOne(turmaDto.getIdTurma());
-		
-		if(turmaModel != null) {
-		turmaModel.setAlunos(turmaDto.getAlunos());
-		turmaModel.setAnoLetivo(turmaDto.getAnoLetivo());
-		turmaModel.setDescricao(turmaDto.getDescricao());
-		turmaModel.setNumeroVagas(turmaDto.getNumeroVagas());
-		turmaModel.setPeriodoLetivo(turmaDto.getPeriodoLetivo());
-		turmaRepository.save(turmaModel);
-		}else {
-			
+		try {
+			Turma turmaModel = turmaRepository.getOne(turmaDto.getIdTurma());
+			turmaModel.setAlunos(turmaDto.getAlunos());
+			turmaModel.setAnoLetivo(turmaDto.getAnoLetivo());
+			turmaModel.setDescricao(turmaDto.getDescricao());
+			turmaModel.setNumeroVagas(turmaDto.getNumeroVagas());
+			turmaModel.setPeriodoLetivo(turmaDto.getPeriodoLetivo());
+			turmaRepository.save(turmaModel);
+		}catch (EntityNotFoundException  e) {
 			throw new TurmaException("Turma não encontrada");
 		}
 	}
 
 	@RabbitListener(queues = "turmaDeletar")
 	public void deletarTurma(TurmaDto turmaDto) {
-		Turma turmaModel = turmaRepository.getOne(turmaDto.getIdTurma());
 		
-		if(turmaModel != null) {
+		try {
+			Turma turmaModel = turmaRepository.getOne(turmaDto.getIdTurma());
 			
 			turmaRepository.delete(turmaModel);
-		}else {
-			
+		}catch (EntityNotFoundException e) {
 			throw new TurmaException("Turma não encontrada");
 		}
-		
 	}
 	
 	public Turma criarTurmaModel(TurmaDto turmaDto) {

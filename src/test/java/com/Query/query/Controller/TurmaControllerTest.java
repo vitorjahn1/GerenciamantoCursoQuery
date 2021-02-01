@@ -1,7 +1,5 @@
 package com.Query.query.Controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.net.URI;
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +19,7 @@ class TurmaControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	private void retornaTurmaStatus200paraUmParametro() throws Exception {
+	public void retornaTurmaStatus200paraUmParametro() throws Exception {
 
 		URI uri = new URI("/turma/1");
 
@@ -31,7 +29,7 @@ class TurmaControllerTest {
 	}
 
 	@Test
-	private void retornaTurmaStatus200semParametro() throws Exception {
+	public void retornaTurmaStatus200semParametro() throws Exception {
 
 		URI uri = new URI("/turma");
 

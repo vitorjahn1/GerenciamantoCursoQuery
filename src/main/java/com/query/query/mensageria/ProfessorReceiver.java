@@ -42,7 +42,7 @@ public class ProfessorReceiver {
 	@RabbitListener(queues = "professorDeletar")
 	public void deletarProfessor(ProfessorDto professorDto) {
 
-		Professor professorModel = professorRepository.getOne(professorDto.getIdPessoa());
+		Professor professorModel = professorRepository.findByIdProfessor(professorDto.getIdProfessor());
 
 		if (professorModel != null) {
 			professorRepository.delete(professorModel);

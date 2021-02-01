@@ -1,5 +1,7 @@
 package com.query.query.mensageria;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,9 +26,9 @@ public class DisciplinaReceiver {
 
 	@RabbitListener(queues = "disciplinaAtualizar")
 	public void atualizarDisciplina(DisciplinaDto disciplina) {
-
-		Disciplina disciplinaAtualiza = disciplinaRepository.getOne(disciplina.getIdDisciplina());
-		if(disciplinaAtualiza != null) {
+		try {
+			Disciplina disciplinaAtualiza = disciplinaRepository.getOne(disciplina.getIdDisciplina());
+			
 			disciplinaAtualiza.setProfessores(disciplina.getProfessores());
 			disciplinaAtualiza.setDescricao(disciplina.getDescricao());
 			disciplinaAtualiza.setCargaHoraria(disciplina.getCargaHoraria());
@@ -34,18 +36,20 @@ public class DisciplinaReceiver {
 			disciplinaAtualiza.setTurmas(disciplina.getTurmas());
 
 			disciplinaRepository.save(disciplinaAtualiza);
-		}else {
-			
+		}catch (EntityNotFoundException  e) {
 			throw new DisciplinaException("Disciplina não encontrada");
 		}
-
 	}
 
 	@RabbitListener(queues = "disciplinaDeletar")
-	public void deletarTurma(DisciplinaDto disciplinaDto) {
-
-		disciplinaRepository.delete(criarDisciplinaModel(disciplinaDto));
-
+	public void deletarDisciplina(DisciplinaDto disciplinaDto) {
+		try {
+			Disciplina disciplinaDeletar = disciplinaRepository.getOne(disciplinaDto.getIdDisciplina());
+			
+			disciplinaRepository.delete(disciplinaDeletar);
+		}catch (EntityNotFoundException  e) {
+			throw new DisciplinaException("Disciplina não encontrada");
+		}
 	}
 	
 	public Disciplina criarDisciplinaModel(DisciplinaDto disciplinaDto) {

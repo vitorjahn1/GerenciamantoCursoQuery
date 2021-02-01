@@ -19,7 +19,7 @@ public class AlunoControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	private void retornaAlunoStatus200paraUmParametro() throws Exception {
+	public void retornaAlunoStatus200paraUmParametro() throws Exception {
 
 		URI uri = new URI("/aluno/1");
 
@@ -29,7 +29,7 @@ public class AlunoControllerTest {
 	}
 
 	@Test
-	private void retornaAlunoStatus200semParametro() throws Exception {
+	public void retornaAlunoStatus200semParametro() throws Exception {
 
 		URI uri = new URI("/aluno");
 
