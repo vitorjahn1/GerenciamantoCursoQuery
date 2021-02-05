@@ -21,7 +21,7 @@ import com.query.query.repository.AlunoRepository;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class AlunoControllerTest {
+ class AlunoControllerTest {
 	
 	@Autowired
 	private AlunoRepository alunoRepository;
