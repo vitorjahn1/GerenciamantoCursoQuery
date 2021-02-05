@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.query.query.dto.DisciplinaDto;
+import com.query.query.dtoresposta.DisciplinaDtoResposta;
 import com.query.query.service.DisciplinaService;
 
 import lombok.AllArgsConstructor;
@@ -25,17 +25,17 @@ public class DisciplinaController {
 	public static final String PATH = "/disciplina";
 
 	@GetMapping("/{id}")
-	public ResponseEntity<DisciplinaDto> retornaDisciplina(@PathVariable Integer id) {
+	public ResponseEntity<DisciplinaDtoResposta> retornaDisciplina(@PathVariable Integer id) {
 
-		DisciplinaDto disciplina = disciplinaService.retornaDisciplina(id);
+		DisciplinaDtoResposta disciplina = disciplinaService.retornaDisciplina(id);
 
 		return ResponseEntity.ok(disciplina);
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<DisciplinaDto>> retornaDisciplinas() {
+	public ResponseEntity<List<DisciplinaDtoResposta>> retornaDisciplinas() {
 
-		List<DisciplinaDto>disciplinas = disciplinaService.retornaDisciplinas();
+		List<DisciplinaDtoResposta>disciplinas = disciplinaService.retornaDisciplinas();
 
 		return ResponseEntity.ok(disciplinas);
 	}

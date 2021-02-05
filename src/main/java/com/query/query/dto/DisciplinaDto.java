@@ -1,15 +1,14 @@
 package com.query.query.dto;
 
-import java.util.HashSet;
+import java.io.Serializable;
 import java.util.Set;
-
-import com.query.query.model.Professor;
-import com.query.query.model.Turma;
 
 import lombok.Data;
 
 @Data
-public class DisciplinaDto {
+public class DisciplinaDto implements Serializable{
+
+	private static final long serialVersionUID = -3984794552136348183L;
 
 	private Integer idDisciplina;
 	
@@ -19,8 +18,6 @@ public class DisciplinaDto {
 	
 	private String sigla;
 	
-	private Turma turmas;
-
-	private Set<Professor> professores = new HashSet<>();
+	private Set<ProfessorDto> professores;
 
 }

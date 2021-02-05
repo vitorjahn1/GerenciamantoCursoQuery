@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.query.query.dto.ProfessorDto;
+import com.query.query.dtoresposta.ProfessorDtoResposta;
 import com.query.query.exception.ProfessorException;
 import com.query.query.model.Professor;
 import com.query.query.repository.ProfessorRepository;
@@ -20,30 +21,30 @@ import lombok.AllArgsConstructor;
 public class ProfessorService {
 
 	private final ProfessorRepository professorRepository;
-
-	public ProfessorDto retornaProfessor(Integer idProfessor) {
+	
+	public ProfessorDtoResposta retornaProfessor(Integer idProfessor) {
 
 		Professor professorRetorno = professorRepository.findByIdProfessor(idProfessor);
 
 		if (professorRetorno == null)
 			throw new ProfessorException("Professor não encontrado");
 
-		return criarProfessoDto(professorRetorno);
+		return criarProfessoDtoResposta(professorRetorno);
 	}
 
-	public List<ProfessorDto> retornaProfessores() {
+	public List<ProfessorDtoResposta> retornaProfessores() {
 
-		List<ProfessorDto> professoresDto = new ArrayList<>();
+		List<ProfessorDtoResposta> professoresDtoResposta = new ArrayList<>();
 
 		for (Professor professor : professorRepository.findAll()) {
 			if (professor == null) {
 
 				continue;
 			}
-			professoresDto.add(criarProfessoDto(professor));
+			professoresDtoResposta.add(criarProfessoDtoResposta(professor));
 		}
 
-		return professoresDto;
+		return professoresDtoResposta;
 	}
 
 	public ProfessorDto criarProfessoDto(Professor professor) {
@@ -54,7 +55,21 @@ public class ProfessorService {
 		professorDto.setEmail(professor.getEmail());
 		professorDto.setNome(professor.getNome());
 		professorDto.setTitulacao(professor.getTitulacao());
-
+		professorDto.setIdPessoa(professor.getIdPessoa());
+		professorDto.setIdProfessor(professor.getIdProfessor());
 		return professorDto;
+	}
+	
+	public ProfessorDtoResposta criarProfessoDtoResposta(Professor professor) {
+
+		ProfessorDtoResposta professorDtoResposta = new ProfessorDtoResposta();
+
+		professorDtoResposta.setCpf(professor.getCpf());
+		professorDtoResposta.setEmail(professor.getEmail());
+		professorDtoResposta.setNome(professor.getNome());
+		professorDtoResposta.setTitulacao(professor.getTitulacao());
+		professorDtoResposta.setIdPessoa(professor.getIdPessoa());
+		professorDtoResposta.setIdProfessor(professor.getIdProfessor());
+		return professorDtoResposta;
 	}
 }

@@ -1,19 +1,17 @@
 package com.query.query.dto;
 
-import com.query.query.model.Disciplina;
-import com.query.query.model.Pessoa;
+import java.io.Serializable;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper=false)
 @Data
-public class ProfessorDto extends Pessoa {
+public class ProfessorDto extends PessoaDto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer idProfessor;
 	
 	private String titulacao;
 	
-	private Disciplina disciplina;
 }

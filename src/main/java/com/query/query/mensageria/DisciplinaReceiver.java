@@ -29,11 +29,11 @@ public class DisciplinaReceiver {
 		try {
 			Disciplina disciplinaAtualiza = disciplinaRepository.getOne(disciplina.getIdDisciplina());
 			
-			disciplinaAtualiza.setProfessores(disciplina.getProfessores());
+			
 			disciplinaAtualiza.setDescricao(disciplina.getDescricao());
 			disciplinaAtualiza.setCargaHoraria(disciplina.getCargaHoraria());
 			disciplinaAtualiza.setSigla(disciplina.getSigla());
-			disciplinaAtualiza.setTurmas(disciplina.getTurmas());
+			
 
 			disciplinaRepository.save(disciplinaAtualiza);
 		}catch (EntityNotFoundException  e) {
@@ -56,11 +56,10 @@ public class DisciplinaReceiver {
 		
 		Disciplina disciplinaModel = new Disciplina();
 		
-		disciplinaModel.setProfessores(disciplinaDto.getProfessores());
 		disciplinaModel.setDescricao(disciplinaDto.getDescricao());
 		disciplinaModel.setCargaHoraria(disciplinaDto.getCargaHoraria());
 		disciplinaModel.setSigla(disciplinaDto.getSigla());
-		disciplinaModel.setTurmas(disciplinaDto.getTurmas());
+		
 		return disciplinaModel;
 	}
 }

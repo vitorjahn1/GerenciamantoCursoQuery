@@ -33,8 +33,9 @@ public class AlunoReceiver {
 			aluno.setEmail(alunoDto.getEmail());
 			aluno.setFormaIngresso(alunoDto.getFormaIngresso());
 			aluno.setNome(alunoDto.getNome());
-			aluno.setTurma(alunoDto.getTurma());
-
+			aluno.setIdPessoa(aluno.getIdPessoa());
+			aluno.setMatricula(aluno.getMatricula());
+			
 			alunoRepository.save(aluno);
 		} catch (EntityNotFoundException  e) {
 			throw new AlunoException("Aluno não encontrado");
@@ -61,8 +62,7 @@ public class AlunoReceiver {
 		alunoModel.setEmail(alunoDto.getEmail());
 		alunoModel.setFormaIngresso(alunoDto.getFormaIngresso());
 		alunoModel.setNome(alunoDto.getNome());
-		alunoModel.setTurma(alunoDto.getTurma());
-
+		
 		return alunoModel;
 	}
 }

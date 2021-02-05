@@ -1,16 +1,16 @@
 package com.query.query.dto;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.query.query.model.Aluno;
-import com.query.query.model.Disciplina;
 
 import lombok.Data;
 
 @Data
-public class TurmaDto {
+public class TurmaDto implements Serializable{
 	
+	private static final long serialVersionUID = -8477647011072252306L;
+
 	private Integer idTurma;
 	
 	private String anoLetivo;
@@ -21,8 +21,8 @@ public class TurmaDto {
 	
 	private Integer periodoLetivo;
 
-	private Set<Disciplina> disciplinas = new HashSet<>();
+	private Set<DisciplinaDto> disciplinas = new HashSet<>();
 	
-	private Set<Aluno> alunos = new HashSet<>();
+	private Set<AlunoDto> alunos = new HashSet<>();
 }
 

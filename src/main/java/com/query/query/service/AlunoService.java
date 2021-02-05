@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.query.query.dto.AlunoDto;
+import com.query.query.dtoresposta.AlunoDtoResposta;
 import com.query.query.exception.AlunoException;
 import com.query.query.model.Aluno;
 import com.query.query.repository.AlunoRepository;
@@ -21,27 +22,26 @@ public class AlunoService {
 
 	private final AlunoRepository alunoRepository;
 
-	public AlunoDto retornaAluno(Integer matricula) {
+	public AlunoDtoResposta retornaAluno(Integer matricula) {
 
 		Aluno alunoRetorno = alunoRepository.findByMatricula(matricula);
 
 		if (alunoRetorno == null)
 			throw new AlunoException("Aluno não encontrado");
 
-		AlunoDto alunoDto = criarAlunoDto(alunoRetorno);
-		return alunoDto;
+		
+		return criarAlunoDtoResposta(alunoRetorno);
 	}
 
-	public List<AlunoDto> retornaAlunos() {
+	public List<AlunoDtoResposta> retornaAlunos() {
 
-		List<Aluno> alunos = alunoRepository.findAll();
-		List<AlunoDto> alunosDtos = new ArrayList<>();
-		for (Aluno aluno : alunos) {
+		List<AlunoDtoResposta> alunosDtoResposta = new ArrayList<>();
+		for (Aluno aluno :  alunoRepository.findAll()) {
 
-			alunosDtos.add(criarAlunoDto(aluno));
+			alunosDtoResposta.add(criarAlunoDtoResposta(aluno));
 		}
 
-		return alunosDtos;
+		return alunosDtoResposta;
 	}
 
 	public AlunoDto criarAlunoDto(Aluno alunoModel) {
@@ -54,11 +54,29 @@ public class AlunoService {
 			alunoDto.setEmail(alunoModel.getEmail());
 			alunoDto.setFormaIngresso(alunoModel.getFormaIngresso());
 			alunoDto.setNome(alunoModel.getNome());
-			alunoDto.setTurma(alunoModel.getTurma());
+			alunoDto.setIdPessoa(alunoModel.getIdPessoa());
+			alunoDto.setMatricula(alunoModel.getMatricula());
 		}
 
 		return alunoDto;
 
 	}
 
+	public AlunoDtoResposta criarAlunoDtoResposta(Aluno alunoModel) {
+
+		AlunoDtoResposta alunoDtoResposta = new AlunoDtoResposta();
+
+		if (alunoModel != null) {
+
+			alunoDtoResposta.setCpf(alunoModel.getCpf());
+			alunoDtoResposta.setEmail(alunoModel.getEmail());
+			alunoDtoResposta.setFormaIngresso(alunoModel.getFormaIngresso());
+			alunoDtoResposta.setNome(alunoModel.getNome());
+			alunoDtoResposta.setIdPessoa(alunoModel.getIdPessoa());
+			alunoDtoResposta.setMatricula(alunoModel.getMatricula());
+		}
+
+		return alunoDtoResposta;
+
+	}
 }

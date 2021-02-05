@@ -1,23 +1,17 @@
 package com.query.query.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.query.query.model.Pessoa;
-import com.query.query.model.Turma;
+import java.io.Serializable;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 @Data
-public class AlunoDto extends Pessoa{
+public class AlunoDto extends PessoaDto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer matricula;
 
 	private String formaIngresso;
-
-	private Set<Turma> turma = new HashSet<>();
 
 }
