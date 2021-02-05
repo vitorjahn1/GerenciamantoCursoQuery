@@ -1,7 +1,6 @@
 package com.query.query.dto;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import lombok.Data;
 
@@ -18,6 +17,6 @@ public class DisciplinaDto implements Serializable{
 	
 	private String sigla;
 	
-	private Set<ProfessorDto> professores;
+	private ProfessorDto professor;
 
 }

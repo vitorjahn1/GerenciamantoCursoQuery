@@ -1,11 +1,10 @@
 package com.query.query.model;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -26,6 +25,6 @@ public class Disciplina implements Serializable {
 	private String descricao;
 	private String cargaHoraria;
 	private String sigla;
-	@OneToMany
-	private Set<Professor> professores;
+	@ManyToOne
+	private Professor professor;
 }

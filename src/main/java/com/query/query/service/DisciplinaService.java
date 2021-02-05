@@ -1,21 +1,16 @@
 package com.query.query.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import com.query.query.dto.DisciplinaDto;
-import com.query.query.dto.ProfessorDto;
 import com.query.query.dtoresposta.DisciplinaDtoResposta;
-import com.query.query.dtoresposta.ProfessorDtoResposta;
 import com.query.query.exception.DisciplinaException;
 import com.query.query.model.Disciplina;
-import com.query.query.model.Professor;
 import com.query.query.repository.DisciplinaRepository;
 
 import lombok.AllArgsConstructor;
@@ -58,7 +53,7 @@ public class DisciplinaService {
 		disciplinaDto.setCargaHoraria(disciplina.getCargaHoraria());
 		disciplinaDto.setSigla(disciplina.getSigla());
 		disciplinaDto.setIdDisciplina(disciplina.getIdDisciplina());
-		disciplinaDto.setProfessores(criaListaProfessorDto(disciplina.getProfessores()));
+		disciplinaDto.setProfessor(professorService.criarProfessoDto(disciplina.getProfessor()));
 		return disciplinaDto;
 	}
 
@@ -69,37 +64,8 @@ public class DisciplinaService {
 		disciplinaDtoResposta.setCargaHoraria(disciplina.getCargaHoraria());
 		disciplinaDtoResposta.setSigla(disciplina.getSigla());
 		disciplinaDtoResposta.setIdDisciplina(disciplina.getIdDisciplina());
-		disciplinaDtoResposta.setProfessores(criaListaProfessorDtoResposta(disciplina.getProfessores()));
+		disciplinaDtoResposta.setProfessor(professorService.criarProfessoDtoResposta((disciplina.getProfessor())));
 		return disciplinaDtoResposta;
 	}
-
-	private Set<ProfessorDtoResposta> criaListaProfessorDtoResposta(Set<Professor> professores) {
-
-		Set<ProfessorDtoResposta> professoresDtoResposta = new HashSet<>();
-
-		if (!professores.isEmpty()) {
-			for (Professor professor : professores) {
-				professoresDtoResposta.add(professorService.criarProfessoDtoResposta(professor));
-			}
-			return professoresDtoResposta;
-		} else {
-			return professoresDtoResposta;
-		}
-
-	}
-
-	private Set<ProfessorDto> criaListaProfessorDto(Set<Professor> professores) {
-
-		Set<ProfessorDto> professoresDto = new HashSet<>();
-
-		if (!professores.isEmpty()) {
-			for (Professor professor : professores) {
-				professoresDto.add(professorService.criarProfessoDto(professor));
-			}
-			return professoresDto;
-		} else {
-			return professoresDto;
-		}
-
-	}
+	
 }

@@ -4,8 +4,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import java.net.URI;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -78,11 +76,8 @@ class ProfessorControllerTest {
 		
 		professorRepository.saveAndFlush(professor);
 		
-		Set<Professor> professores = new HashSet<>();
-
-		professores.add(professor);
 		
-		Disciplina disciplina = new Disciplina(1,"desc","100","dis",professores);
+		Disciplina disciplina = new Disciplina(1,"desc","100","dis",professor);
 		
 		disciplinaRepository.saveAndFlush(disciplina);
 		

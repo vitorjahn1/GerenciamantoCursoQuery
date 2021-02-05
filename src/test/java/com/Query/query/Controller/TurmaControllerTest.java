@@ -99,12 +99,12 @@ class TurmaControllerTest {
 				.andExpect(jsonPath("$.[0].disciplinas[*].descricao",Matchers.containsInAnyOrder("desc")))
 				.andExpect(jsonPath("$.[0].disciplinas[*].cargaHoraria",Matchers.containsInAnyOrder("100")))
 				.andExpect(jsonPath("$.[0].disciplinas[*].sigla",Matchers.containsInAnyOrder("dis")))
-				.andExpect(jsonPath("$.[0].disciplinas[*].professores[*].idProfessor", Matchers.containsInAnyOrder(1)))
-				.andExpect(jsonPath("$.[0].disciplinas[*].professores[*].titulacao", Matchers.containsInAnyOrder("mestre")))
-				.andExpect(jsonPath("$.[0].disciplinas[*].professores[*].nome", Matchers.containsInAnyOrder("teste")))
-				.andExpect(jsonPath("$.[0].disciplinas[*].professores[*].email", Matchers.containsInAnyOrder("teste@teste")))
-				.andExpect(jsonPath("$.[0].disciplinas[*].professores[*].idPessoa", Matchers.containsInAnyOrder(1)))
-				.andExpect(jsonPath("$.[0].disciplinas[*].professores[*].cpf", Matchers.containsInAnyOrder("1111")))
+				.andExpect(jsonPath("$.[0].disciplinas[*].professor.idProfessor", Matchers.containsInAnyOrder(1)))
+				.andExpect(jsonPath("$.[0].disciplinas[*].professor.titulacao", Matchers.containsInAnyOrder("mestre")))
+				.andExpect(jsonPath("$.[0].disciplinas[*].professor.nome", Matchers.containsInAnyOrder("teste")))
+				.andExpect(jsonPath("$.[0].disciplinas[*].professor.email", Matchers.containsInAnyOrder("teste@teste")))
+				.andExpect(jsonPath("$.[0].disciplinas[*].professor.idPessoa", Matchers.containsInAnyOrder(1)))
+				.andExpect(jsonPath("$.[0].disciplinas[*].professor.cpf", Matchers.containsInAnyOrder("1111")))
 				.andExpect(jsonPath("$.[0].alunos[*].idPessoa",Matchers.containsInAnyOrder(1)))
 				.andExpect(jsonPath("$.[0].alunos[*].nome",Matchers.containsInAnyOrder("teste")))
 				.andExpect(jsonPath("$.[0].alunos[*].email",Matchers.containsInAnyOrder("teste@teste")))
@@ -128,12 +128,8 @@ class TurmaControllerTest {
 		
 		professorRepository.saveAndFlush(professor);
 		
-		Set<Professor> professores = new HashSet<>();
-
-		professores.add(professor);
-		
 		Set<Disciplina> disciplinas = new HashSet<>();
-		Disciplina disciplina = new Disciplina(1,"desc","100","dis",professores);
+		Disciplina disciplina = new Disciplina(1,"desc","100","dis",professor);
 		
 		disciplinaRepository.saveAndFlush(disciplina);
 		

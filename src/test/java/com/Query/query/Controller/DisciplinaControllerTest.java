@@ -4,12 +4,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import java.net.URI;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -50,12 +47,12 @@ class DisciplinaControllerTest {
 		.andExpect(jsonPath("$.descricao",is("desc")))
 		.andExpect(jsonPath("$.cargaHoraria",is("100")))
 		.andExpect(jsonPath("$.sigla",is("dis")))
-		.andExpect(jsonPath("$.professores[*].idProfessor", Matchers.containsInAnyOrder(1)))
-		.andExpect(jsonPath("$.professores[*].titulacao", Matchers.containsInAnyOrder("mestre")))
-		.andExpect(jsonPath("$.professores[*].nome", Matchers.containsInAnyOrder("teste")))
-		.andExpect(jsonPath("$.professores[*].email", Matchers.containsInAnyOrder("teste@teste")))
-		.andExpect(jsonPath("$.professores[*].idPessoa", Matchers.containsInAnyOrder(1)))
-		.andExpect(jsonPath("$.professores[*].cpf", Matchers.containsInAnyOrder("1111")))
+		.andExpect(jsonPath("$.professor.idProfessor",is(1)))
+		.andExpect(jsonPath("$.professor.titulacao", is("mestre")))
+		.andExpect(jsonPath("$.professor.nome", is("teste")))
+		.andExpect(jsonPath("$.professor.email", is("teste@teste")))
+		.andExpect(jsonPath("$.professor.idPessoa", is(1)))
+		.andExpect(jsonPath("$.professor.cpf", is("1111")))
 		.andExpect(MockMvcResultMatchers.status().is(200));
 	}
 
@@ -71,12 +68,12 @@ class DisciplinaControllerTest {
 		.andExpect(jsonPath("$.[0].descricao",is("desc")))
 		.andExpect(jsonPath("$.[0].cargaHoraria",is("100")))
 		.andExpect(jsonPath("$.[0].sigla",is("dis")))		
-		.andExpect(jsonPath("$.[0].professores[*].idProfessor", Matchers.containsInAnyOrder(1)))
-		.andExpect(jsonPath("$.[0].professores[*].titulacao", Matchers.containsInAnyOrder("mestre")))
-		.andExpect(jsonPath("$.[0].professores[*].nome", Matchers.containsInAnyOrder("teste")))
-		.andExpect(jsonPath("$.[0].professores[*].email", Matchers.containsInAnyOrder("teste@teste")))
-		.andExpect(jsonPath("$.[0].professores[*].idPessoa", Matchers.containsInAnyOrder(1)))
-		.andExpect(jsonPath("$.[0].professores[*].cpf", Matchers.containsInAnyOrder("1111")))
+		.andExpect(jsonPath("$.[0].professor.idProfessor", is(1)))
+		.andExpect(jsonPath("$.[0].professor.titulacao",is("mestre")))
+		.andExpect(jsonPath("$.[0].professor.nome", is("teste")))
+		.andExpect(jsonPath("$.[0].professor.email", is("teste@teste")))
+		.andExpect(jsonPath("$.[0].professor.idPessoa", is(1)))
+		.andExpect(jsonPath("$.[0].professor.cpf", is("1111")))
 		.andExpect(MockMvcResultMatchers.status().is(200));
 
 	}
@@ -86,12 +83,8 @@ class DisciplinaControllerTest {
 		Professor professor = new Professor(1,"teste","1111","teste@teste","mestre");
 		
 		professorRepository.saveAndFlush(professor);
-		
-		Set<Professor> professores = new HashSet<>();
-
-		professores.add(professor);
-		
-		Disciplina disciplina = new Disciplina(1,"desc","100","dis",professores);
+	
+		Disciplina disciplina = new Disciplina(1,"desc","100","dis",professor);
 		
 		disciplinaRepository.saveAndFlush(disciplina);
 		

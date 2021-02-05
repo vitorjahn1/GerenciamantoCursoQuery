@@ -1,7 +1,6 @@
 package com.query.query.dtoresposta;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import lombok.Data;
 @Data
@@ -12,5 +11,5 @@ public class DisciplinaDtoResposta implements Serializable{
 	private String descricao;
 	private String cargaHoraria;
 	private String sigla;
-	private Set<ProfessorDtoResposta> professores;
+	private ProfessorDtoResposta professor;
 }
