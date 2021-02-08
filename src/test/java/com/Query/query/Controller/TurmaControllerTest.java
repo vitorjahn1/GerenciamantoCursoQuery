@@ -64,12 +64,12 @@ class TurmaControllerTest {
 				.andExpect(jsonPath("$.disciplinas[*].descricao",Matchers.containsInAnyOrder("desc")))
 				.andExpect(jsonPath("$.disciplinas[*].cargaHoraria",Matchers.containsInAnyOrder("100")))
 				.andExpect(jsonPath("$.disciplinas[*].sigla",Matchers.containsInAnyOrder("dis")))
-				.andExpect(jsonPath("$.disciplinas[*].professores[*].idProfessor", Matchers.containsInAnyOrder(1)))
-				.andExpect(jsonPath("$.disciplinas[*].professores[*].titulacao", Matchers.containsInAnyOrder("mestre")))
-				.andExpect(jsonPath("$.disciplinas[*].professores[*].nome", Matchers.containsInAnyOrder("teste")))
-				.andExpect(jsonPath("$.disciplinas[*].professores[*].email", Matchers.containsInAnyOrder("teste@teste")))
-				.andExpect(jsonPath("$.disciplinas[*].professores[*].idPessoa", Matchers.containsInAnyOrder(1)))
-				.andExpect(jsonPath("$.disciplinas[*].professores[*].cpf", Matchers.containsInAnyOrder("1111")))
+				.andExpect(jsonPath("$.disciplinas[*].professor.idProfessor", Matchers.containsInAnyOrder(1)))
+				.andExpect(jsonPath("$.disciplinas[*].professor.titulacao", Matchers.containsInAnyOrder("mestre")))
+				.andExpect(jsonPath("$.disciplinas[*].professor.nome", Matchers.containsInAnyOrder("teste")))
+				.andExpect(jsonPath("$.disciplinas[*].professor.email", Matchers.containsInAnyOrder("teste@teste")))
+				.andExpect(jsonPath("$.disciplinas[*].professor.idPessoa", Matchers.containsInAnyOrder(1)))
+				.andExpect(jsonPath("$.disciplinas[*].professor.cpf", Matchers.containsInAnyOrder("1111")))
 				.andExpect(jsonPath("$.alunos[*].idPessoa",Matchers.containsInAnyOrder(1)))
 				.andExpect(jsonPath("$.alunos[*].nome",Matchers.containsInAnyOrder("teste")))
 				.andExpect(jsonPath("$.alunos[*].email",Matchers.containsInAnyOrder("teste@teste")))
@@ -79,7 +79,7 @@ class TurmaControllerTest {
 	}
 
 	@Test
-	public void retornaTurmaStatus200semParametro() throws Exception {
+	void retornaTurmaStatus200semParametro() throws Exception {
 		
 		criarTurma();
 		
