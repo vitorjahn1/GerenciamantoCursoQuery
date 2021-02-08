@@ -1,10 +1,13 @@
 package com.query.query.mensageria;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.query.query.dto.DisciplinaDto;
+import com.query.query.exception.DisciplinaException;
 import com.query.query.model.Disciplina;
 import com.query.query.repository.DisciplinaRepository;
 
@@ -15,45 +18,48 @@ public class DisciplinaReceiver {
 	public DisciplinaRepository disciplinaRepository;
 
 	@RabbitListener(queues = "disciplinaCriar")
-	public void inserirTurma(DisciplinaDto disciplinaDto) {
-		
-		
+	public void inserirDisciplina(DisciplinaDto disciplinaDto) {
 		
 		disciplinaRepository.save(criarDisciplinaModel(disciplinaDto));
 
 	}
 
 	@RabbitListener(queues = "disciplinaAtualizar")
-	public void atualizarTurma(DisciplinaDto disciplina) {
+	public void atualizarDisciplina(DisciplinaDto disciplina) {
+		try {
+			Disciplina disciplinaAtualiza = disciplinaRepository.getOne(disciplina.getIdDisciplina());
+			
+			
+			disciplinaAtualiza.setDescricao(disciplina.getDescricao());
+			disciplinaAtualiza.setCargaHoraria(disciplina.getCargaHoraria());
+			disciplinaAtualiza.setSigla(disciplina.getSigla());
+			
 
-		Disciplina disciplinaAtualiza = disciplinaRepository.getOne(disciplina.getIdDisciplina());
-		disciplinaAtualiza.setProfessores(disciplina.getProfessores());
-		disciplinaAtualiza.setDescricao(disciplina.getDescricao());
-		disciplinaAtualiza.setCargaHoraria(disciplina.getCargaHoraria());
-		disciplinaAtualiza.setSigla(disciplina.getSigla());
-		disciplinaAtualiza.setTurmas(disciplina.getTurmas());
-
-		disciplinaRepository.save(disciplinaAtualiza);
-
+			disciplinaRepository.save(disciplinaAtualiza);
+		}catch (EntityNotFoundException  e) {
+			throw new DisciplinaException("Disciplina não encontrada");
+		}
 	}
 
 	@RabbitListener(queues = "disciplinaDeletar")
-	public void deletarTurma(DisciplinaDto disciplinaDto) {
-
-		disciplinaRepository.delete(criarDisciplinaModel(disciplinaDto));
-
+	public void deletarDisciplina(DisciplinaDto disciplinaDto) {
+		try {
+			Disciplina disciplinaDeletar = disciplinaRepository.getOne(disciplinaDto.getIdDisciplina());
+			
+			disciplinaRepository.delete(disciplinaDeletar);
+		}catch (EntityNotFoundException  e) {
+			throw new DisciplinaException("Disciplina não encontrada");
+		}
 	}
 	
 	public Disciplina criarDisciplinaModel(DisciplinaDto disciplinaDto) {
 		
 		Disciplina disciplinaModel = new Disciplina();
 		
-		disciplinaModel.setProfessores(disciplinaDto.getProfessores());
 		disciplinaModel.setDescricao(disciplinaDto.getDescricao());
 		disciplinaModel.setCargaHoraria(disciplinaDto.getCargaHoraria());
 		disciplinaModel.setSigla(disciplinaDto.getSigla());
-		disciplinaModel.setTurmas(disciplinaDto.getTurmas());
+		
 		return disciplinaModel;
 	}
-
 }

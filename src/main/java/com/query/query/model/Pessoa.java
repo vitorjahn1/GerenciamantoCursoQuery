@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @MappedSuperclass
 @Data
 @NoArgsConstructor
@@ -22,5 +21,4 @@ public class Pessoa implements Serializable{
 	private String nome;
 	private String cpf;
 	private String email;
-	
 }
