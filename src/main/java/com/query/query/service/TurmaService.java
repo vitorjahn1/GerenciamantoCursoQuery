@@ -9,9 +9,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.query.query.dto.AlunoDto;
-import com.query.query.dto.DisciplinaDto;
-import com.query.query.dto.TurmaDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.AlunoDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.DisciplinaDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.TurmaDto;
 import com.query.query.dtoresposta.AlunoDtoResposta;
 import com.query.query.dtoresposta.DisciplinaDtoResposta;
 import com.query.query.dtoresposta.TurmaDtoResposta;

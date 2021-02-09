@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 public class Turma implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1163091750281931L;
 	@Id
 	private Integer idTurma;
 	private String anoLetivo;

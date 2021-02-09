@@ -9,9 +9,9 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.query.query.dto.AlunoDto;
-import com.query.query.dto.DisciplinaDto;
-import com.query.query.dto.TurmaDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.AlunoDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.DisciplinaDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.TurmaDto;
 import com.query.query.exception.TurmaException;
 import com.query.query.model.Aluno;
 import com.query.query.model.Disciplina;
@@ -64,7 +64,7 @@ public class TurmaReceiver {
 		turmaModel.setNumeroVagas(turmaDto.getNumeroVagas());
 		turmaModel.setPeriodoLetivo(turmaDto.getPeriodoLetivo());
 		turmaModel.setDisciplinas(criaListaDisciplina(turmaDto.getDisciplinas()));
-		turmaModel.setDisciplinas(criaListaDisciplina(turmaDto.getDisciplinas()));
+		turmaModel.setAlunos(criaListaAluno(turmaDto.getAlunos()));
 		turmaModel.setIdTurma(turmaDto.getIdTurma());
 		return turmaModel;
 		
@@ -72,9 +72,11 @@ public class TurmaReceiver {
 	
 	private Set<Aluno> criaListaAluno(Set<AlunoDto> alunosDto){
 		
+		Set<Aluno> alunos = new HashSet<>();
+		
 		if(alunosDto!= null && !alunosDto.isEmpty()) {
 			
-			Set<Aluno> alunos = new HashSet<>();
+			
 			for(AlunoDto alunoDto : alunosDto){
 				
 				Aluno aluno = new Aluno();
@@ -90,15 +92,16 @@ public class TurmaReceiver {
 			return alunos;
 		}
 		
-		return null;
+		return alunos;
 		
 	}
 	
 	private Set<Disciplina> criaListaDisciplina(Set<DisciplinaDto> disciplinasDto){
 		
+		Set<Disciplina> disciplinas = new HashSet<>();
+		
 		if(disciplinasDto!= null && !disciplinasDto.isEmpty()) {
 			
-			Set<Disciplina> disciplinas = new HashSet<>();
 			for(DisciplinaDto disciplinaDto: disciplinasDto){
 				
 				Disciplina disciplina = new Disciplina();
@@ -112,7 +115,7 @@ public class TurmaReceiver {
 			return disciplinas;
 		}
 		
-		return null;
+		return disciplinas;
 		
 	}
 }

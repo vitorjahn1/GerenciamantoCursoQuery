@@ -10,7 +10,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 @EnableWebSocketMessageBroker
 public class QueryApplication {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args)  {
 	  SpringApplication.run(QueryApplication.class, args);
 	}
 
