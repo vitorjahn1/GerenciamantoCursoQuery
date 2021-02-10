@@ -17,7 +17,7 @@ public class AMQPCConfig {
 
 	public static final String QUEUE_TURMA_ATUALIZAR = "turmaAtualizar";
 	public static final String QUEUE_TURMA_CRIAR = "turmaCriar";
-	public static final String QUEUE_TURMA_DELETAR = "turmaCriar";
+	public static final String QUEUE_TURMA_DELETAR = "turmaDeletar";
 	
 	public static final String QUEUE_PROFESSOR_ATUALIZAR = "professorAtualizar";
 	public static final String QUEUE_PROFESSOR_CRIAR = "professorCriar";
