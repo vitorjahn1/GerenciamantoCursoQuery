@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.query.query.dto.AlunoDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.AlunoDto;
 import com.query.query.dtoresposta.AlunoDtoResposta;
 import com.query.query.exception.AlunoException;
 import com.query.query.model.Aluno;

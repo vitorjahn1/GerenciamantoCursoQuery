@@ -27,6 +27,7 @@ public class AMQPCConfig {
 	public static final String QUEUE_DISCIPLINA_CRIAR = "disciplinaCriar";
 	public static final String QUEUE_DISCIPLINA_DELETAR = "disciplinaDeletar";
 	
+	
 	public static final String ROUTING_KEY = "route";
 	public static final String ROUTING_KEY_ALUNO = "route_aluno_atualizar";
 	public static final String ROUTING_KEY_ALUNO_DELETAR = "route_aluno_deletar";
@@ -42,6 +43,7 @@ public class AMQPCConfig {
 	public static final String ROUTING_PROFESSOR_ATUALIZAR = "professor_atualizar";
 	public static final String ROUTING_PROFESSOR_CRIAR = "professor_criar";
 	public static final String ROUTING_PROFESSOR_DELETAR = "professor_deletar";
+	
 
 	@Bean
 	public DirectExchange appExchange() {
@@ -127,11 +129,6 @@ public class AMQPCConfig {
 	public Binding declareBindingAtulizarTurma() {
 		return BindingBuilder.bind(appQueueTurmaAtualizar()).to(appExchange()).with(ROUTING_TURMA_ATUALIZAR);
 	}
-
-	@Bean
-	public Binding declareBindingCriarTurma() {
-		return BindingBuilder.bind(appQueueProfessorCriar()).to(appExchange()).with(QUEUE_PROFESSOR_CRIAR);
-	}
 	
 	@Bean
 	public Binding declareBindingProfessorDeletar() {
@@ -153,20 +150,24 @@ public class AMQPCConfig {
 		return BindingBuilder.bind(appQueueTurmaDeletar()).to(appExchange()).with(ROUTING_TURMA_DELETAR);
 	}
 	
+	@Bean
+	public Binding declareBindingCriarTurma() {
+		return BindingBuilder.bind(appQueueTurmaCriar()).to(appExchange()).with(ROUTING_TURMA_CRIAR);
+	}
 
 	@Bean
 	public Binding declareBindingCriarDisciplina() {
-		return BindingBuilder.bind(appQueueProfessorCriar()).to(appExchange()).with(ROUTING_DISCIPLINA_CRIAR);
+		return BindingBuilder.bind(appQueueDisciplinaCriar()).to(appExchange()).with(ROUTING_DISCIPLINA_CRIAR);
 	}
 	
 	@Bean
 	public Binding declareBindingDeletarDisciplina() {
-		return BindingBuilder.bind(appQueueProfessorDeletar()).to(appExchange()).with(ROUTING_DISCIPLINA_DELETAR);
+		return BindingBuilder.bind(appQueueDisciplinaDeletar()).to(appExchange()).with(ROUTING_DISCIPLINA_DELETAR);
 	}
 	
 	@Bean
 	public Binding declareBindingAtualizarDisciplina() {
-		return BindingBuilder.bind(appQueueProfessorCriar()).to(appExchange()).with(ROUTING_DISCIPLINA_ATUALIZAR);
+		return BindingBuilder.bind(appQueueDisciplinaAtualizar()).to(appExchange()).with(ROUTING_DISCIPLINA_ATUALIZAR);
 	}
-
+	
 }

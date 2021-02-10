@@ -1,4 +1,4 @@
-package com.query.query.dto;
+package com.projetogerenciamentocurso.gerenciamentocurso.dto;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class TurmaDto implements Serializable{
 	
-	private static final long serialVersionUID = -8477647011072252306L;
+	private static final long serialVersionUID = 1163091750281931L;;
 
 	private Integer idTurma;
 	

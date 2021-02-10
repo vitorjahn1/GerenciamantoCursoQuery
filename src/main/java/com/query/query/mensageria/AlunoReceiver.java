@@ -5,13 +5,15 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.query.query.dto.AlunoDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.AlunoDto;
 import com.query.query.exception.AlunoException;
 import com.query.query.model.Aluno;
 import com.query.query.repository.AlunoRepository;
 
 @Component
+@ResponseBody
 public class AlunoReceiver {
 
 	@Autowired
@@ -62,7 +64,8 @@ public class AlunoReceiver {
 		alunoModel.setEmail(alunoDto.getEmail());
 		alunoModel.setFormaIngresso(alunoDto.getFormaIngresso());
 		alunoModel.setNome(alunoDto.getNome());
-		
+		alunoModel.setIdPessoa(alunoDto.getIdPessoa());
+		alunoModel.setMatricula(alunoDto.getMatricula());
 		return alunoModel;
 	}
 }

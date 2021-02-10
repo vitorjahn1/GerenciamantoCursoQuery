@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.query.query.dto.ProfessorDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.ProfessorDto;
 import com.query.query.dtoresposta.ProfessorDtoResposta;
 import com.query.query.exception.ProfessorException;
 import com.query.query.model.Professor;

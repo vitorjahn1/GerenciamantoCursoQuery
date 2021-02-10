@@ -3,13 +3,15 @@ package com.query.query.mensageria;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.query.query.dto.ProfessorDto;
+import com.projetogerenciamentocurso.gerenciamentocurso.dto.ProfessorDto;
 import com.query.query.exception.ProfessorException;
 import com.query.query.model.Professor;
 import com.query.query.repository.ProfessorRepository;
 
 @Component
+@ResponseBody
 public class ProfessorReceiver {
 
 	@Autowired
@@ -32,6 +34,8 @@ public class ProfessorReceiver {
 			professorModel.setEmail(professorDto.getEmail());
 			professorModel.setNome(professorDto.getNome());
 			professorModel.setTitulacao(professorDto.getTitulacao());
+			professorModel.setIdPessoa(professorDto.getIdPessoa());
+			professorModel.setIdProfessor(professorDto.getIdProfessor());
 			professorRepository.save(professorModel);
 		}else {
 			
@@ -61,6 +65,8 @@ public class ProfessorReceiver {
 		professorModel.setEmail(professorDto.getEmail());
 		professorModel.setNome(professorDto.getNome());
 		professorModel.setTitulacao(professorDto.getTitulacao());
+		professorModel.setIdPessoa(professorDto.getIdPessoa());
+		professorModel.setIdProfessor(professorDto.getIdProfessor());
 		return professorModel;
 	}
 }

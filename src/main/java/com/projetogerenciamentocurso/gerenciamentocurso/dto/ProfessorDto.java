@@ -1,4 +1,4 @@
-package com.query.query.dto;
+package com.projetogerenciamentocurso.gerenciamentocurso.dto;
 
 import java.io.Serializable;
 
